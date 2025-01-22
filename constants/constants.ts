@@ -1,3 +1,5 @@
+export const MAX_VOCABS = 10
+
 export const jlptN5Vocabulary = [
     'あう',
     'あかい',

@@ -9,10 +9,11 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar'
 import { Input } from './ui/input'
-import { jlptN5Vocabulary } from './constants/constants'
 import { RadioGroup, RadioGroupItem } from './ui/radio-group'
 import { Label } from './ui/label'
 import { Dispatch, SetStateAction } from 'react'
+import { jlptN5Vocabulary, MAX_VOCABS } from '@/constants/constants'
+import { toast } from 'sonner'
 
 type AppSidebarProps = {
     selectedValues: string[]
@@ -41,6 +42,11 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
                         <SidebarMenuItem key={item} >
                             <SidebarMenuButton asChild
                                 onClick={() => {
+                                    if (selectedValues.length >= MAX_VOCABS) {
+                                        return toast('10 words selected! Ready to start generating your sentence!', {
+                                            description: 'Click \'Generate using Above\''
+                                        })
+                                    }
                                     if (!selectedValues.includes(item)) {
                                         setSelectedValues((prev) => [...prev, item])
                                     }
