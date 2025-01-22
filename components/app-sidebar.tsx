@@ -1,5 +1,5 @@
 // import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-"use client"
+'use client'
 import {
     Sidebar,
     SidebarContent,
@@ -7,7 +7,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar'
 import { Input } from './ui/input'
 import { jlptN5Vocabulary } from './constants/constants'
 import { RadioGroup, RadioGroupItem } from './ui/radio-group'

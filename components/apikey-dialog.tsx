@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { useLocalStorage } from '@/hooks/use-localstorage'
 import { Button } from './ui/button'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
