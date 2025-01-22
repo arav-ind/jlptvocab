@@ -10,8 +10,9 @@ export default function ApiKeyDialog() {
     const { setLocalStorage } = useLocalStorage()
     const [open, setOpen] = useState(false)
     const [apiKey, setApiKey] = useState('')
+
     return (
-        <Dialog open={open}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild onClick={() => setOpen(true)}>
                 <Button>Add Key</Button>
             </DialogTrigger>
