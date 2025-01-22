@@ -27,6 +27,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      # Install pnpm globally first
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -49,18 +54,18 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-      - name: Setup pnpm
-        run: |
-          npm install -g pnpm
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           static_site_generator: next
+
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -69,10 +74,13 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml', '**/yarn.lock', '**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml', '**/yarn.lock', '**/package-lock.json') }}-
+      
       - name: Install dependencies
         run: pnpm install
+
       - name: Build with Next.js
         run: pnpm run build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
