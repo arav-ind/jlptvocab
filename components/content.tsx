@@ -12,6 +12,10 @@ export default function Content() {
     const [buttonText, setButtonText] = useState('Generate using Random')
 
     useEffect(() => {
+        if (selectedValues.length === 0) {
+            setButtonText('Generate using Random')
+            return
+        }
         if (buttonText === 'Generate using Random' && selectedValues.length > 0) {
             setButtonText('Generate using Above')
         }
@@ -27,8 +31,10 @@ export default function Content() {
         <>
             <AppSidebar selectedValues={selectedValues} setSelectedValues={setSelectedValues} />
             <SidebarTrigger />
-            <div id='main-content' className='py-32 lg:px-32 px-10 flex flex-col gap-10'>
-                <SelectedVocabs vocabs={selectedValues} />
+            <div id='main-content' className='py-32 lg:px-32 px-10 flex flex-col gap-5'>
+                <h1 className='text-3xl'>JLPT Vocabs!</h1>
+                <p className='text-sm'>Select upto 10 words to generate a sentence.</p>
+                <SelectedVocabs vocabs={selectedValues} setSelectedValues={setSelectedValues} />
                 <div className='flex gap-4'>
                     <Button className='w-auto'>{buttonText}</Button>
                 </div>
