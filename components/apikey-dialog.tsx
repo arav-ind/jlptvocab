@@ -14,7 +14,7 @@ export default function ApiKeyDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild onClick={() => setOpen(true)}>
-                <Button>Add Key</Button>
+                <Button>Add API Key</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
