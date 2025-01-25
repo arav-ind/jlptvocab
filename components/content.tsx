@@ -7,14 +7,17 @@ import SelectedVocabs from './selected-vocabs'
 import { Button } from './ui/button'
 import { useQuery } from '@tanstack/react-query'
 import { fetchParagraph } from '@/api/fetch-paragraph'
+import { useLocalStorage } from '@/hooks/use-localstorage'
 
 export default function Content() {
     const [selectedValues, setSelectedValues] = useState<string[]>([])
     const [buttonText, setButtonText] = useState('Generate using Random')
 
-    const { data, refetch } = useQuery({
+    const { getLocalStorage } = useLocalStorage()
+
+    const { data, refetch, failureReason } = useQuery({
         queryKey: ['paragraph'],
-        queryFn: () => fetchParagraph(selectedValues),
+        queryFn: () => fetchParagraph(selectedValues, getLocalStorage('api-key')),
         enabled: false,
         staleTime: 1000 * 60 * 10,
     })
@@ -44,7 +47,7 @@ export default function Content() {
                 <div className='flex gap-4'>
                     <Button className='w-auto' onClick={handleClick}>{buttonText}</Button>
                 </div>
-                <OutputText text={data} />
+                {failureReason ? <div>{failureReason.message}</div> : <OutputText text={data} />}
             </div>
         </>
     )

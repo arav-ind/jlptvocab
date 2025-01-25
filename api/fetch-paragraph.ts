@@ -1,8 +1,9 @@
 // 'use server' // TODO: Github pages does not support server actions
 
-export async function fetchParagraph(prompt: string[]) {
+export async function fetchParagraph(prompt: string[], apiKey: string) {
+    if (!apiKey) throw new Error('No API Key found!')
+
     const apiUrl = 'https://api.groq.com/openai/v1/chat/completions'
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY
 
     const requestBody = {
         model: 'llama3-8b-8192', // Groq-specific model
