@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { AppSidebar } from './app-sidebar'
 import OutputText from './output-text'
-import { SidebarTrigger } from './ui/sidebar'
 import SelectedVocabs from './selected-vocabs'
 import { Button } from './ui/button'
 
@@ -30,7 +29,6 @@ export default function Content() {
     return (
         <>
             <AppSidebar selectedValues={selectedValues} setSelectedValues={setSelectedValues} />
-            <SidebarTrigger />
             <div id='main-content' className='py-32 lg:px-32 px-10 flex flex-col gap-5'>
                 <h1 className='text-3xl'>JLPT Vocabs!</h1>
                 <p className='text-sm'>Select upto 10 words to generate a paragraph.</p>
