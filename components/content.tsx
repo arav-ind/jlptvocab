@@ -5,10 +5,19 @@ import { AppSidebar } from './app-sidebar'
 import OutputText from './output-text'
 import SelectedVocabs from './selected-vocabs'
 import { Button } from './ui/button'
+import { useQuery } from '@tanstack/react-query'
+import { fetchParagraph } from '@/api/fetch-paragraph'
 
 export default function Content() {
     const [selectedValues, setSelectedValues] = useState<string[]>([])
     const [buttonText, setButtonText] = useState('Generate using Random')
+
+    const { data, refetch } = useQuery({
+        queryKey: ['paragraph'],
+        queryFn: () => fetchParagraph(selectedValues),
+        enabled: false,
+        staleTime: 1000 * 60 * 10,
+    })
 
     useEffect(() => {
         if (selectedValues.length === 0) {
@@ -21,10 +30,9 @@ export default function Content() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedValues])
 
-    useEffect(() => {
-        console.log(selectedValues)
-
-    }, [selectedValues])
+    const handleClick = () => {
+        refetch()
+    }
 
     return (
         <>
@@ -34,9 +42,9 @@ export default function Content() {
                 <p className='text-sm'>Select upto 10 words to generate a paragraph.</p>
                 <SelectedVocabs vocabs={selectedValues} setSelectedValues={setSelectedValues} />
                 <div className='flex gap-4'>
-                    <Button className='w-auto'>{buttonText}</Button>
+                    <Button className='w-auto' onClick={handleClick}>{buttonText}</Button>
                 </div>
-                <OutputText />
+                <OutputText text={data} />
             </div>
         </>
     )
