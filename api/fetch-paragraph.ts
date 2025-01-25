@@ -2,7 +2,7 @@
 
 export async function fetchParagraph(prompt: string[]) {
     const apiUrl = 'https://api.groq.com/openai/v1/chat/completions'
-    const apiKey = process.env.API_KEY
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY
 
     const requestBody = {
         model: 'llama3-8b-8192', // Groq-specific model
