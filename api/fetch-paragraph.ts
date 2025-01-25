@@ -1,4 +1,4 @@
-'use server'
+// 'use server' // TODO: Github pages does not support server actions
 
 export async function fetchParagraph(prompt: string[]) {
     const apiUrl = 'https://api.groq.com/openai/v1/chat/completions'
