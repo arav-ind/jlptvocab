@@ -37,7 +37,16 @@ export default function Content() {
                 <div className='flex gap-4'>
                     <Button className='w-auto' onClick={handleClick}>Generate Paragraph</Button>
                 </div>
-                {failureReason ? <div>{failureReason.message}</div> : <OutputText text={data} isFetching={isFetching} />}
+                {failureReason ?
+                    <div>
+                        {failureReason.message} Please generate one from
+                        <a href='https://console.groq.com/keys' target='_blank' className='text-pink-600'>
+                            &nbsp;here!
+                        </a>
+                    </div>
+                    :
+                    <OutputText text={data} isFetching={isFetching} />
+                }
             </div>
         </>
     )
