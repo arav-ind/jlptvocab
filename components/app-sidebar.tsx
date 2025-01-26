@@ -34,6 +34,7 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
                         <Label htmlFor="n4">N4</Label>
                     </div>
                 </RadioGroup>
+                <div className='text-center text-lg font-bold text-[#e11d48]'>Vocab List</div>
                 <Input type="search" placeholder="Search" />
             </SidebarHeader>
             <SidebarContent className='no-scrollbar px-2'>
@@ -52,7 +53,7 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
                                     }
                                 }}>
                                 <span className={
-                                    `border-2 border-solid ${selectedValues.includes(item) ? 'opacity-50 cursor-not-allowed' : ''}`
+                                    `border-2 border-solid font-semibold ${selectedValues.includes(item) ? 'opacity-50 cursor-not-allowed' : ''}`
                                 }>
                                     {item}
                                 </span>
