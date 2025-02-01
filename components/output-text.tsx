@@ -10,13 +10,11 @@ export default function OutputText({ text, isFetching }: { text: string | null, 
         return null
     }
     return (
-        <>
-            <div className='relative flex flex-col gap-2'>
-                <Button variant="outline" size="icon" className='self-end h-5 w-5'>
-                    <Clipboard />
-                </Button>
-                <p className='leading-loose'>{sanitizedText}</p>
-            </div>
-        </>
+        <div className='relative flex flex-col gap-2'>
+            <Button variant="outline" size="icon" className='self-end h-5 w-5'>
+                <Clipboard />
+            </Button>
+            <p className='leading-loose'>{sanitizedText}</p>
+        </div>
     )
 }
