@@ -1,4 +1,3 @@
-// import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 'use client'
 import {
     Sidebar,
@@ -11,8 +10,8 @@ import {
 import { Input } from './ui/input'
 import { RadioGroup, RadioGroupItem } from './ui/radio-group'
 import { Label } from './ui/label'
-import { Dispatch, SetStateAction } from 'react'
-import { jlptN5Vocabulary, MAX_VOCABS } from '@/constants/constants'
+import { Dispatch, SetStateAction, useState } from 'react'
+import { jlptN4Vocabulary, jlptN5Vocabulary, MAX_VOCABS } from '@/constants/constants'
 import { toast } from 'sonner'
 
 type AppSidebarProps = {
@@ -21,10 +20,27 @@ type AppSidebarProps = {
 }
 
 export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProps) {
+    const [selectedType, setSelectedType] = useState(jlptN5Vocabulary)
+
+    const handleRadioChange = (val: string) => {
+        switch (val) {
+            case 'n5':
+                return setSelectedType(jlptN5Vocabulary)
+            case 'n4':
+                return setSelectedType(jlptN4Vocabulary)
+            default:
+                return setSelectedType(jlptN5Vocabulary)
+        }
+    }
+
     return (
         <Sidebar>
             <SidebarHeader className='py-5 flex flex-col gap-5'>
-                <RadioGroup className='flex items-center justify-evenly' defaultValue="n5">
+                <RadioGroup
+                    className='flex items-center justify-evenly'
+                    defaultValue="n5"
+                    onValueChange={handleRadioChange}
+                >
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="n5" id="n5" />
                         <Label htmlFor="n5">N5</Label>
@@ -39,8 +55,8 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
             </SidebarHeader>
             <SidebarContent className='no-scrollbar px-2'>
                 <SidebarMenu>
-                    {jlptN5Vocabulary.map((item) => (
-                        <SidebarMenuItem key={item} >
+                    {selectedType.map((item, indx) => (
+                        <SidebarMenuItem key={`${indx}-${item}`} >
                             <SidebarMenuButton asChild
                                 onClick={() => {
                                     if (selectedValues.length >= MAX_VOCABS) {
@@ -53,7 +69,7 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
                                     }
                                 }}>
                                 <span className={
-                                    `border-2 border-solid font-semibold ${selectedValues.includes(item) ? 'opacity-50 cursor-not-allowed' : ''}`
+                                    `border-2 border-solid ${selectedValues.includes(item) ? 'opacity-50 cursor-not-allowed' : ''}`
                                 }>
                                     {item}
                                 </span>
@@ -62,6 +78,6 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
                     ))}
                 </SidebarMenu>
             </SidebarContent>
-        </Sidebar>
+        </Sidebar >
     )
 }
