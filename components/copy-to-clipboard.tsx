@@ -1,27 +1,28 @@
-import { Clipboard } from 'lucide-react'
-import { Button } from './ui/button'
+import { ClipboardCheck, ClipboardCopy } from 'lucide-react'
 import { useState } from 'react'
 
 export default function CopyToClipboard({ text }: { text: string }) {
-    const [copySuccess, setCopySuccess] = useState('')
+    const [copySuccess, setCopySuccess] = useState(false)
 
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(text)
-            setCopySuccess('Copied!')
+            setCopySuccess(true)
         } catch (err) {
-            setCopySuccess('Failed to copy!')
+            setCopySuccess(false)
             console.error('Error copying text: ', err)
         }
     }
 
     return (
-        <div className='flex flex-row-reverse align-middle gap-2'>
-            <Button variant="outline" size="icon" className='h-5 w-5 flex' onClick={handleCopy}>
-                <Clipboard />
-            </Button>
-            {copySuccess && <span className='font-thin text-xs'>Copied!</span>}
-        </div>
+        <>
+            {
+                copySuccess ?
+                    <ClipboardCheck className='h-5 w-5 cursor-pointer self-end text-green-500' />
+                    : <ClipboardCopy className='h-5 w-5 cursor-pointer self-end text-[#e11d48]' onClick={handleCopy} />
+            }
+        </>
     )
+
 
 }
