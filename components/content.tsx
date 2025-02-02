@@ -31,7 +31,7 @@ export default function Content() {
         <>
             <AppSidebar selectedValues={selectedValues} setSelectedValues={setSelectedValues} />
             <div id='main-content' className='py-32 lg:px-32 px-10 flex flex-col gap-5 w-full'>
-                <h1 className='text-3xl'>JLPT Vocabs!</h1>
+                <h1 className='text-3xl font-bold'>JLPT Vocabs</h1>
                 <p className='text-sm'>Select upto 10 words to generate a paragraph.</p>
                 <SelectedVocabs vocabs={selectedValues} setSelectedValues={setSelectedValues} />
                 <div className='flex gap-4'>
@@ -43,6 +43,7 @@ export default function Content() {
                         <a href='https://console.groq.com/keys' target='_blank' className='text-pink-600'>
                             &nbsp;here!
                         </a>
+                        &nbsp;It is completely free!
                     </div>
                     :
                     <OutputText text={data} isFetching={isFetching} />
