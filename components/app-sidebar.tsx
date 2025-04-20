@@ -11,8 +11,9 @@ import { Input } from './ui/input'
 import { RadioGroup, RadioGroupItem } from './ui/radio-group'
 import { Label } from './ui/label'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { jlptN4Vocabulary, jlptN5Vocabulary, MAX_VOCABS } from '@/constants/constants'
+import { CONSTANTS, MAX_VOCABS } from '@/constants/constants'
 import { toast } from 'sonner'
+import { jlptN4Vocabulary, jlptN5Vocabulary } from '@/constants/data'
 
 type AppSidebarProps = {
     selectedValues: string[]
@@ -43,14 +44,14 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
                 >
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="n5" id="n5" />
-                        <Label htmlFor="n5">N5</Label>
+                        <Label htmlFor="n5">{CONSTANTS.N5}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="n4" id="n4" />
-                        <Label htmlFor="n4">N4</Label>
+                        <Label htmlFor="n4">{CONSTANTS.N4}</Label>
                     </div>
                 </RadioGroup>
-                <div className='text-center text-lg font-bold text-[#e11d48]'>Vocab List</div>
+                <div className='text-center text-lg font-bold text-[#e11d48]'>{CONSTANTS.VOCAB_LIST}</div>
                 <Input type="search" placeholder="Search" />
             </SidebarHeader>
             <SidebarContent className='no-scrollbar px-2'>
@@ -60,8 +61,8 @@ export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProp
                             <SidebarMenuButton asChild
                                 onClick={() => {
                                     if (selectedValues.length >= MAX_VOCABS) {
-                                        return toast('10 words selected! Ready to start generating your sentence!', {
-                                            description: 'Click \'Generate using Above\''
+                                        return toast(CONSTANTS.TOAST_SELECTED, {
+                                            description: CONSTANTS.TOAST_DESCRIPTION
                                         })
                                     }
                                     if (!selectedValues.includes(item)) {

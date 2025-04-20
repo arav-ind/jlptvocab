@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { useState } from 'react'
+import { CONSTANTS } from '@/constants/constants'
 
 export default function ApiKeyDialog() {
     const { setLocalStorage } = useLocalStorage()
@@ -14,16 +15,16 @@ export default function ApiKeyDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild onClick={() => setOpen(true)}>
-                <Button>Add API Key</Button>
+                <Button>{CONSTANTS.ADD_API}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add Groq API Key</DialogTitle>
+                    <DialogTitle>{CONSTANTS.ADD_GROQ}</DialogTitle>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="api-key" className="text-right">
-                            API Key
+                            {CONSTANTS.API_KEY}
                         </Label>
                         <Input
                             id="api-key"
@@ -36,7 +37,7 @@ export default function ApiKeyDialog() {
                     <Button onClick={() => {
                         setLocalStorage('api-key', apiKey)
                         setOpen(false)
-                    }}>Save</Button>
+                    }}>{CONSTANTS.SAVE}</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
