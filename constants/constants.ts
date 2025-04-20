@@ -14,4 +14,5 @@ export const CONSTANTS = {
     ADD_GROQ: 'Add Groq API Key',
     API_KEY: 'API Key',
     SAVE: 'Save',
+    SELECT_RANDOM: 'Choose Random Words',
 }
