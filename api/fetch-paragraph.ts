@@ -1,26 +1,27 @@
 // 'use server' // TODO: Github pages does not support server actions
 
-export async function fetchParagraph(prompt: string[], apiKey: string) {
+export async function fetchParagraph(prompt: string[], apiKey: string, level: string) {
     if (!apiKey) throw new Error('No API Key found!')
 
     const apiUrl = 'https://api.groq.com/openai/v1/chat/completions'
 
     const requestBody = {
-        model: 'llama3-8b-8192', // Groq-specific model
+        model: 'llama3-8b-8192',
         messages: [
             {
                 role: 'user',
-                content: 
-                `
-                    Give me a 200 words paragraph in japanese using the following words: 
-                    '${prompt.join(', ')}'. Please don't make any extra statements other than the para itself.
-                    Just give me the japanese paragraph as response wrapped in <p>
-                `
+                content: `
+                    <p>
+                        Using the following words at JLPT ${level} level — ${prompt.join(', ')} — write a natural 200-word paragraph in Japanese. 
+                        Do not include any explanation or translation. 
+                        Only output the paragraph, and wrap it in a single <p> tag.
+                    </p>
+                    `.trim()
             }
         ],
         temperature: 0.7
     }
-
+    
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
