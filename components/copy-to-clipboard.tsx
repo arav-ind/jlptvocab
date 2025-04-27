@@ -19,7 +19,7 @@ export default function CopyToClipboard({ text }: { text: string }) {
             {
                 copySuccess ?
                     <ClipboardCheck className='h-5 w-5 cursor-pointer self-end text-green-500' />
-                    : <ClipboardCopy className='h-5 w-5 cursor-pointer self-end text-[#e11d48]' onClick={handleCopy} />
+                    : <ClipboardCopy className='h-5 w-5 cursor-pointer self-end text-primary' onClick={handleCopy} />
             }
         </>
     )

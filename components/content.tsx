@@ -60,7 +60,7 @@ export default function Content() {
                 {failureReason ?
                     <div>
                         {failureReason.message} Please generate one from
-                        <a href='https://console.groq.com/keys' target='_blank' className='text-pink-600'>
+                        <a href='https://console.groq.com/keys' target='_blank' className='text-primary'>
                             &nbsp;here!
                         </a>
                         &nbsp;It is completely free!

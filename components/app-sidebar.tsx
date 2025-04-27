@@ -64,7 +64,7 @@ export function AppSidebar({ selectedValues, setSelectedValues, setLevel }: AppS
                         <Label htmlFor="n4">{CONSTANTS.N4}</Label>
                     </div>
                 </RadioGroup>
-                <div className='text-center text-lg font-bold text-[#e11d48]'>{CONSTANTS.VOCAB_LIST}</div>
+                <div className='text-center text-lg font-bold text-primary'>{CONSTANTS.VOCAB_LIST}</div>
                 <Input type="search" placeholder="Search" />
                 <Button className='w-auto' onClick={handleSelectRandom}>{CONSTANTS.SELECT_RANDOM}</Button>
             </SidebarHeader>
