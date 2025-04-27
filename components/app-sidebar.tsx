@@ -19,16 +19,19 @@ import { Button } from './ui/button'
 type AppSidebarProps = {
     selectedValues: string[]
     setSelectedValues: Dispatch<SetStateAction<string[]>>
+    setLevel: Dispatch<SetStateAction<string>>
 }
 
-export function AppSidebar({ selectedValues, setSelectedValues }: AppSidebarProps) {
+export function AppSidebar({ selectedValues, setSelectedValues, setLevel }: AppSidebarProps) {
     const [selectedType, setSelectedType] = useState(jlptN5Vocabulary)
 
     const handleRadioChange = (val: string) => {
         switch (val) {
             case 'n5':
+                setLevel('n5')
                 return setSelectedType(jlptN5Vocabulary)
             case 'n4':
+                setLevel('n4')
                 return setSelectedType(jlptN4Vocabulary)
             default:
                 return setSelectedType(jlptN5Vocabulary)
