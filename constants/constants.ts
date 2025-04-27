@@ -9,10 +9,11 @@ export const CONSTANTS = {
     N4: 'N4',
     VOCAB_LIST: 'Vocab List',
     TOAST_SELECTED: '10 words selected! Ready to start generating your sentence!',
-    TOAST_DESCRIPTION: 'Click \'Generate using Above\'',
+    TOAST_DESCRIPTION: 'Click \'Generate Paragraph\'',
     ADD_API: 'Add API Key',
     ADD_GROQ: 'Add Groq API Key',
     API_KEY: 'API Key',
     SAVE: 'Save',
     SELECT_RANDOM: 'Choose Random Words',
+    CLEAR_SELECTIONS: 'Clear Selections',
 }
